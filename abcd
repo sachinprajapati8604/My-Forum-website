@@ -1,0 +1,16 @@
+#62 to be session_start
+
+
+
+      if(password_verify($pass,$row['user_pass'])){
+            session_start();
+            $_SESSION['loggedin']=true;
+            $_SESSION['useremail']=$email;
+            echo "logged in ".$email;
+           // header("Location: /MyForum/index.php");
+
+
+        }
+        else{
+            echo "Unable to login";
+        }
