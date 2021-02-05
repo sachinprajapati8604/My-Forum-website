@@ -14,8 +14,7 @@ if($conn)
 else
 {
 	//echo "Connection failed";  
-	//or use to see error funtion of php
-	
+	//or use to see error funtion of php	
 	die ("Connection failed beacuase ".mysqli_connect_error() );
 	
 	
