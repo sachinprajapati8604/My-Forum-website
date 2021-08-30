@@ -11,14 +11,22 @@
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <title>Great-Discusssion</title>
+
+    <style>
+    .cat-img {
+        height: 12rem;
+        width: 100%;
+        object-fit: contain;
+    }
+    </style>
 </head>
 
 <body>
 
-    <?php 
+    <?php
     include 'dbconnect.php';
     include 'header.php'; ?>
-    
+
 
     <!-- Crousle -->
 
@@ -30,13 +38,13 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="https://source.unsplash.com/1600x400/?computer-fact" class="d-block w-100" alt="...">
+                <img src="image/slide1.jpg" class=" d-block w-100" height="400px" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="https://source.unsplash.com/1600x400/?coding,trick" class="d-block w-100" alt="...">
+                <img src="image/slide2.jpg" class=" d-block w-100" height="400px" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="https://source.unsplash.com/1600x400/?programming,software" class="d-block w-100" alt="...">
+                <img src="image/slide3.jpg" class=" d-block w-100" height="400px" class="d-block w-100" alt="...">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -57,34 +65,33 @@
         <div class="row">
             <!--fetching all the categories-->
 
-            <?php 
+            <?php
             include 'dbconnect.php';
             // Turn off error reporting
             //  error_reporting(0);
 
-                $sql="SELECT * FROM `category`";
-                $result=mysqli_query($conn,$sql);
-                while($row=mysqli_fetch_assoc($result)){
-                  // echo $row['category_id'];
-                  // echo $row['category_name'];
-                $id=$row['category_id'];
-                $cat=$row['category_name'];
-                $desc=$row['category_description'];
-                  echo '<div class="col-md-4 my-2 ">
-                  <div class="card" style="width: 18rem;">
-                      <img src="https://source.unsplash.com/800x400/?'.$cat.',coding" class="card-img-top" alt="...">
+            $sql = "SELECT * FROM `category`";
+            $result = mysqli_query($conn, $sql);
+            while ($row = mysqli_fetch_assoc($result)) {
+                // echo $row['category_id'];
+                // echo $row['category_name'];
+                $id = $row['category_id'];
+                $cat = $row['category_name'];
+                $desc = $row['category_description'];
+                $image_name = $row['cat_image'];
+                echo '<div class="col-md-4 my-2 ">
+                  <div class="card h-100" style="width: 18rem; margin:auto;">
+                      <img src="image/' . $image_name . '" class="card-img-top cat-img" alt="...">
                       <div class="card-body">
-                          <h5 class="card-title"> <a  href="threadlist.php?catid='.$id.'">'.$cat.'</a></h5>
-                          <p class="card-text text-justify">'.substr($desc,0,100).'...</p>
-                          <a href="threadlist.php?catid='.$id.'" class="btn btn-primary">View Thread</a>
+                          <h5 class="card-title"> <a  href="threadlist.php?catid=' . $id . '">' . $cat . '</a></h5>
+                          <p class="card-text text-justify">' . substr($desc, 0, 100) . '...</p>
+                          <a href="threadlist.php?catid=' . $id . '" class="btn btn-primary">View Thread</a>
                       </div>
                   </div>
               </div>';
-                  
-                
-                }
+            }
 
-                ?>
+            ?>
 
 
 
@@ -94,18 +101,6 @@
 
 
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     <?php include 'footer.php'; ?>
